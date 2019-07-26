@@ -1,37 +1,36 @@
 import React from 'react';
-import axios from 'axios';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
+import { prisonLineup } from '../actions'
+import PrisonerCard from './prisoner-card'
 
 
 class PrisonPopulation extends React.Component {
 
   componentDidMount(props) {
-    axios
-      .get('https://prison-skills.herokuapp.com/prisoners')
-      .then(resolve => {
-        console.log(resolve);
-        this.setState({friends: resolve.data})
-      })
-      .catch(err => {console.log('Error:', err)})
+    this.props.prisonLineup()
   }
 
   render() {
-    return (
-      <div>
-        prisoners
-      </div>
-    )
+    if(this.props.fetchingPrisoners === true) {
+      return <p>Rounding up the prisoners...</p>
+    } else {
+      return (
+        <div>
+          <PrisonerCard />
+        </div>
+      )
+    }
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-
+    fetchingPrisoners: state.fetchingPrisoners
   }
 }
 
 const mapDispatchToProps = {
-
+  prisonLineup: prisonLineup
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrisonPopulation);
