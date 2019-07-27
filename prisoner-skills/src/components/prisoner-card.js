@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
 const PrisonerCard = (props) => {
-  console.log('Im a prisoner card:',props);
   return (
     <div className='prisoner-container'>
       {props.prisoners.map((person) => {

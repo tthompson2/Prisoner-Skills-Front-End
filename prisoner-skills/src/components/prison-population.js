@@ -6,10 +6,6 @@ import PrisonerCard from './prisoner-card'
 
 class PrisonPopulation extends React.Component {
 
-  componentDidMount(props) {
-    this.props.prisonLineup()
-  }
-
   render() {
     if(this.props.fetchingPrisoners === true) {
       return <p>Rounding up the prisoners...</p>

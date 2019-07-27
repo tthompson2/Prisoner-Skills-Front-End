@@ -4,6 +4,9 @@ import axios from 'axios';
 export const FETCH_PRISONERS = 'FETCH_PRISONERS';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAIL = 'FETCH_FAIL';
+export const GET_PERSONAL_INFO = 'GET_PERSONAL_INFO';
+export const GET_PERSONAL_SUCCESS = 'GET_PERSONAL_SUCCESS';
+export const GET_PERSONAL_FAIL = 'GET_PERSONAL_FAIL';
 
 // Add a prisoner
 // export const PRISONER_IN_COURT = 'PRISONER_IN_COURT';
@@ -19,6 +22,19 @@ export function prisonLineup() {
       })
       .catch(err => {
         dispatch({type: FETCH_FAIL, payload: err})
+      })
+  }
+}
+
+export function personalInfo(id) {
+  return (dispatch) => {
+    dispatch({type: GET_PERSONAL_INFO})
+    axios.get(`https://prison-skills.herokuapp.com/prisoners/${id}`)
+      .then(resolve => {
+        dispatch({type: GET_PERSONAL_SUCCESS, payload: resolve.data})
+      })
+      .catch(err => {
+        dispatch({type: GET_PERSONAL_FAIL, payload: err})
       })
   }
 }

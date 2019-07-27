@@ -26,3 +26,13 @@ a {
   text-decoration: none;
   color: #1be4ff;
 }
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.headerlink {
+  margin: 0 20px;
+}
