@@ -7,6 +7,9 @@ export const FETCH_FAIL = 'FETCH_FAIL';
 export const GET_PERSONAL_INFO = 'GET_PERSONAL_INFO';
 export const GET_PERSONAL_SUCCESS = 'GET_PERSONAL_SUCCESS';
 export const GET_PERSONAL_FAIL = 'GET_PERSONAL_FAIL';
+export const LOGIN_TRY = 'LOGIN_TRY';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
 
 // Add a prisoner
 // export const PRISONER_IN_COURT = 'PRISONER_IN_COURT';
@@ -35,6 +38,20 @@ export function personalInfo(id) {
       })
       .catch(err => {
         dispatch({type: GET_PERSONAL_FAIL, payload: err})
+      })
+  }
+}
+
+export function login(username, password) {
+  return (dispatch) => {
+    dispatch({type: LOGIN_TRY})
+    axios.post(`https://prison-skills.herokuapp.com/auth/login`, { username, password })
+      .then(resolve => {
+        localStorage.setItem('token', resolve.data.token)
+        dispatch({type: LOGIN_SUCCESS})
+      })
+      .catch(err => {
+        dispatch({type: LOGIN_FAIL, payload: err})
       })
   }
 }

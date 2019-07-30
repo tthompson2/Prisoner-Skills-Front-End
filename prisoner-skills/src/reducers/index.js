@@ -1,13 +1,15 @@
 import {
   FETCH_PRISONERS, FETCH_SUCCESS, FETCH_FAIL,
   PRISONER_IN_COURT, PRISONER_GUILTY, PRISONER_INNOCENT,
-  GET_PERSONAL_INFO, GET_PERSONAL_SUCCESS, GET_PERSONAL_FAIL
+  GET_PERSONAL_INFO, GET_PERSONAL_SUCCESS, GET_PERSONAL_FAIL,
+  LOGIN_TRY, LOGIN_SUCCESS, LOGIN_FAIL,
 } from '../actions'
 
 const initialState = {
    prisoners: [],
    fetchingPrisoners: false,
    fetchingPersonal: false,
+   loggingIn: false,
    addingPrisoner: false,
    updatingPrisoner: false,
    deletingPrisoner: false,
@@ -26,7 +28,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingPrisoners: false,
-        error: false,
+        error: null,
         prisoners: action.payload
       }
     }
@@ -48,7 +50,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingPersonal: false,
-        error: false,
+        error: null,
         prisoners: newPrisoners,
       }
     }
@@ -56,6 +58,24 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingPersonal: false,
+        error: true,
+      }
+    }
+    case LOGIN_TRY: {
+      return {
+        ...state,
+        loggingIn: true,
+      }
+    }case LOGIN_SUCCESS: {
+      return {
+        ...state,
+        loggingIn: false,
+        error: null,
+      }
+    }case LOGIN_FAIL: {
+      return {
+        ...state,
+        loggingIn: false,
         error: true,
       }
     }
