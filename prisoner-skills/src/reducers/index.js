@@ -3,6 +3,9 @@ import {
   PRISONER_IN_COURT, PRISONER_GUILTY, PRISONER_INNOCENT,
   GET_PERSONAL_INFO, GET_PERSONAL_SUCCESS, GET_PERSONAL_FAIL,
   LOGIN_TRY, LOGIN_SUCCESS, LOGIN_FAIL,
+  REGISTERING,
+  LOGOUT_SUCCESS,
+
 } from '../actions'
 
 const initialState = {
@@ -10,6 +13,10 @@ const initialState = {
    fetchingPrisoners: false,
    fetchingPersonal: false,
    loggingIn: false,
+   loggedIn: localStorage.token === undefined
+              ? false
+              : true,
+   registering: false,
    addingPrisoner: false,
    updatingPrisoner: false,
    deletingPrisoner: false,
@@ -70,13 +77,28 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
+        loggedIn: true,
+        registering: false,
         error: null,
       }
     }case LOGIN_FAIL: {
       return {
         ...state,
         loggingIn: false,
+        registering: false,
         error: true,
+      }
+    }
+    case REGISTERING: {
+      return {
+        ...state,
+        registering: true,
+      }
+    }
+    case LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        loggedIn: false,
       }
     }
     default: {

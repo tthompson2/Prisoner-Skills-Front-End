@@ -1,14 +1,16 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login } from '../actions';
+import { signup } from '../actions';
 
-class LoginPage extends React.Component {
+class RegisterPage extends React.Component {
 	constructor() {
 		super()
 		this.state = {
 			username: '',
 			password: '',
+			address: '',
+			name: '',
 		}
 	}
 
@@ -22,22 +24,24 @@ class LoginPage extends React.Component {
 
 	submitHandler = (evt) => {
 		evt.preventDefault();
-		this.props.login(this.state.username, this.state.password)
+		this.props.signup(this.state.username, this.state.address, this.state.name, this.state.password, this.state.address);
 		this.props.history.push("/");
 	}
 
 	render() {
-		const { username, password } = this.state
+		const { username, password, name, address } = this.state
 
 		return (
 			<form onSubmit={this.submitHandler}>
 
 				<input type="text" name="username" placeholder="Username" value={username} onChange={this.changeHandler} /><br />
 				<input type="password" name="password" placeholder="Password" value={password} onChange={this.changeHandler} /><br />
+				<input type="text" name="name" placeholder="name" value={name} onChange={this.changeHandler} /><br />
+				<input type="text" name="address" placeholder="address" value={address} onChange={this.changeHandler} /><br />
 
 				{this.props.loggingIn ?
 					<p>Logging in...</p> :
-					<button type="submit">Login</button>}
+					<button type="submit">Sign Up</button>}
 
 			</form>
 		)
@@ -49,12 +53,12 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-	login: login
+	signup: signup
 }
 
 export default withRouter(
 	connect(
 		mapStateToProps,
 		mapDispatchToProps,
-	)(LoginPage)
+	)(RegisterPage)
 )

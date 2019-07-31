@@ -25,7 +25,7 @@ class PrisonerPage extends React.Component {
         { pers === undefined ?
           (<p>Getting prisoner skills...</p>) :
           ( pers.skills === undefined ?
-              <span>🤔 no skills to display 🤔</span> :
+              <span>no skills to display</span> :
               pers.skills.map(skill => {
               return(
                 <span key={skill.id}>{`${skill.name} `}</span>

@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { prisonLineup } from '../actions'
 import PrisonerCard from './prisoner-card'
+import { Link } from "react-router-dom";
+
 
 
 class PrisonPopulation extends React.Component {
@@ -12,18 +14,22 @@ class PrisonPopulation extends React.Component {
     } else {
       return (
         <div>
-          <PrisonerCard />
+          {this.props.loggedIn === true
+          ? <Link to='/NewPrisoner'>Add Prisoner</Link>
+          : null}
+          {this.props.loggedIn === true
+          ? <PrisonerCard />
+          : null}
         </div>
       )
     }
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    fetchingPrisoners: state.fetchingPrisoners
-  }
-}
+const mapStateToProps = (state) => ({
+    fetchingPrisoners: state.fetchingPrisoners,
+    loggedIn: state.loggedIn
+})
 
 const mapDispatchToProps = {
   prisonLineup: prisonLineup
