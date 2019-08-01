@@ -6,6 +6,7 @@ import PrisonerPage from './components/prisoner-page';
 import LoginPage from './components/login-page';
 import RegisterPage from './components/register-page'
 import AddPrisoner from './components/add-prisoner-form'
+import EditPrisoner from './components/edit-prisoner'
 import { connect } from 'react-redux';
 import { prisonLineup } from './actions';
 import { logout } from './actions'
@@ -42,6 +43,8 @@ class App extends React.Component {
         <Route exact path='/LoginPage' component={LoginPage} />
         <Route exact path='/SignUp' component={RegisterPage} />
         <Route exact path='/NewPrisoner' component={AddPrisoner} />
+        <Route exact path='/prisoner/:id/edit' component={EditPrisoner} />
+
       </div>
     )
   }

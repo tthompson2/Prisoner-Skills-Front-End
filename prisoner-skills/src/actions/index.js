@@ -15,6 +15,9 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const PRISONER_IN_COURT = 'PRISONER_IN_COURT';
 export const PRISONER_GUILTY = 'PRISONER_GUILTY';
 export const PRISONER_INNOCENT = 'PRISONER_INNOCENT';
+export const UPDATE_PRISONER = 'UPDATE_PRISONER';
+export const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
+export const UPDATE_FAIL = 'UPDATE_FAIL';
 
 export function prisonLineup() {
   return (dispatch) => {
@@ -77,16 +80,48 @@ export function logout() {
   }
 }
 
-export function trial(bodyData) {
+export function trial(name, prisonID) {
   const config = localStorage.getItem('token')
   return(dispatch) => {
     dispatch({type: PRISONER_IN_COURT})
-    axios.post('https://prison-skills.herokuapp.com/prisoners', {bodyData, config})
-      .then(resolve => {
-        dispatch({type: PRISONER_GUILTY, payload: resolve.data})
-      })
-      .catch(err => {
-        dispatch({type: PRISONER_INNOCENT, payload: err})
-      })
+    axios.post('https://prison-skills.herokuapp.com/prisoners',
+      {
+      	name: name,
+      	prison_id: prisonID,
+      }, {
+      	headers: {
+      		authorization: config
+      	}
+      }
+    )
+    .then(resolve => {
+      dispatch({type: PRISONER_GUILTY, payload: resolve.data})
+    })
+    .catch(err => {
+      dispatch({type: PRISONER_INNOCENT, payload: err})
+    })
+  }
+}
+
+export function update(name, prison_id, canHaveWorkLeave, id) {
+  const config = localStorage.getItem('token')
+  return(dispatch) => {
+    dispatch({type: UPDATE_PRISONER})
+    axios.put(`https://prison-skills.herokuapp.com/prisoners/${id}`,
+      {
+      	name: name,
+      	prison_id: prison_id,
+      	canHaveWorkLeave: canHaveWorkLeave,
+    }, {
+      headers: {
+        authorization: config
+      }
+    })
+		.then(resolve => {
+			dispatch({type: UPDATE_SUCCESS, payload: {name, prison_id, canHaveWorkLeave, id}})
+			})
+		.catch((err) => {
+      dispatch({type: UPDATE_FAIL, payload: err})
+		})
   }
 }

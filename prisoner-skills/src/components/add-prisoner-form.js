@@ -1,14 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signup } from '../actions';
+import { trial } from '../actions';
 
 class AddPrisoner extends React.Component {
 	constructor() {
 		super()
 		this.state = {
 			name: '',
-      prisonID: '',
+      prison_id: '',
 		}
 	}
 
@@ -22,17 +22,17 @@ class AddPrisoner extends React.Component {
 
 	submitHandler = (evt) => {
 		evt.preventDefault();
-		this.props.signup(this.state.username, this.state.address, this.state.name, this.state.password, this.state.address);
+		this.props.trial(this.state.name, this.state.prison_id);
 	}
 
 	render() {
-		const { name, prisonID } = this.state
+		const { name, prison_id } = this.state
 
 		return (
 			<form onSubmit={this.submitHandler}>
 
-				<input type="text" name="name" placeholder="name" value={name} onChange={this.changeHandler} /><br />
-				<input type="text" name="Prison ID" placeholder="Prison ID" value={prisonID} onChange={this.changeHandler} /><br />
+				<input type="text" name="name" placeholder="Name" value={name} onChange={this.changeHandler} /><br />
+				<input type="text" name="prison_id" placeholder="Prison ID" value={prison_id} onChange={this.changeHandler} /><br />
 
 				{this.props.addingPrisoner ?
 					<p>Listening to case...</p> :
@@ -48,7 +48,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-	signup: signup
+	trial: trial
 }
 
 export default withRouter(

@@ -5,7 +5,7 @@ import {
   LOGIN_TRY, LOGIN_SUCCESS, LOGIN_FAIL,
   REGISTERING,
   LOGOUT_SUCCESS,
-
+  UPDATE_PRISONER, UPDATE_SUCCESS, UPDATE_FAIL,
 } from '../actions'
 
 const initialState = {
@@ -99,6 +99,57 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loggedIn: false,
+      }
+    }
+    case PRISONER_IN_COURT: {
+      return {
+        ...state,
+        addingPrisoner: true,
+      }
+    }
+    case PRISONER_GUILTY: {
+      const newPopulation = state.prisoners.push(action.payload)
+      return {
+        ...state,
+        addingPrisoner: false,
+        prisoners: newPopulation,
+        error: null,
+      }
+    }
+    case PRISONER_INNOCENT: {
+      return {
+        ...state,
+        addingPrisoner: false,
+        error: true
+      }
+    }
+    case UPDATE_PRISONER: {
+      return {
+        ...state,
+        updatingPrisoner: true,
+      }
+    }
+    case UPDATE_SUCCESS: {
+      // server returns 1 or 0 so I need to manually update state or do another get request
+      const newguy = {
+        ...state.prisoners.find( p => String(p.id) === action.payload.id),
+        name: action.payload.name,
+        prison_id: action.payload.prison_id,
+        canHaveWorkLeave: action.payload.canHaveWorkLeave,
+      }
+      const updatedPrisoners = state.prisoners.map(prisoner => String(prisoner.id) === action.payload.id ? newguy : prisoner)
+      return {
+        ...state,
+        prisoners: updatedPrisoners,
+        updatingPrisoner: false,
+        error: null
+      }
+    }
+    case UPDATE_FAIL: {
+      return {
+        ...state,
+        updatingPrisoner: false,
+        error: true,
       }
     }
     default: {
