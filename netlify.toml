@@ -5,10 +5,10 @@
 # "base" is directory to change to before starting build. if you set base:
 #    that is where we will look for package.json/.nvmrc/etc not repo root!
 
-# [build]
-#   base    = "./prisoner-skills"
-#   publish = "./prisoner-skills"
-#   command = "yarn build"
+[build]
+  base    = "./prisoner-skills"
+  publish = "./prisoner-skills/build"
+  command = "yarn build"
 
 [[redirects]]
   from = "/*"
