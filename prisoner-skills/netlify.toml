@@ -7,7 +7,7 @@
 
 [build]
   base    = "./prisoner-skills"
-  publish = "./prisoner-skills/src"
+  publish = "./prisoner-skills"
   command = "yarn build"
 
 [[redirects]]
