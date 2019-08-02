@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { personalInfo } from '../actions'
+import { freetheprisoner }from '../actions'
 
 class PrisonerPage extends React.Component {
 
@@ -9,13 +10,19 @@ class PrisonerPage extends React.Component {
     this.props.personalInfo(this.props.match.params.id)
   }
 
+  submitHandler = (evt) => {
+		evt.preventDefault();
+		// this.props.freetheprisoner(this.props.match.params.id);
+    console.log('server doesnt allow us to delete :(');
+	}
+
   render(){
     const pers = this.props.prisoners.find( p => String(p.id) === this.props.match.params.id)
     return(
       <div>
         <nav className="trinket-nav">
           <Link exact to={`/prisoner/${this.props.match.params.id}/edit`} >Edit</Link>
-          <button >Free the prisoner</button>
+          <button type="button" onClick={this.submitHandler}>Free the prisoner</button>
         </nav>
 
         { pers === undefined ?
@@ -28,7 +35,7 @@ class PrisonerPage extends React.Component {
         }
         { pers === undefined ?
           (<p>Getting prisoner skills...</p>) :
-          ( pers.skills === undefined ?
+          ( pers.skills === undefined || pers.skills[0] === undefined ?
               <span>no skills to display</span> :
               pers.skills.map(skill => {
               return(
@@ -49,7 +56,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  personalInfo: personalInfo
+  personalInfo: personalInfo,
+  freetheprisoner: freetheprisoner
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrisonerPage)
