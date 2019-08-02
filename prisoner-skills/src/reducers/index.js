@@ -6,6 +6,7 @@ import {
   REGISTERING,
   LOGOUT_SUCCESS,
   UPDATE_PRISONER, UPDATE_SUCCESS, UPDATE_FAIL,
+  ATTEMPT_BREAKOUT, BREAKOUT_SUCCESS, BREAKOUT_FAIL,
 } from '../actions'
 
 const initialState = {
@@ -149,6 +150,27 @@ export default (state = initialState, action) => {
       return {
         ...state,
         updatingPrisoner: false,
+        error: true,
+      }
+    }
+    case ATTEMPT_BREAKOUT: {
+      return {
+        ...state,
+        deletingPrisoner: false,
+        error: true,
+      }
+    }
+    case BREAKOUT_SUCCESS: {
+      return {
+        ...state,
+        deletingPrisoner: false,
+        error: true,
+      }
+    }
+    case BREAKOUT_FAIL: {
+      return {
+        ...state,
+        deletingPrisoner: false,
         error: true,
       }
     }

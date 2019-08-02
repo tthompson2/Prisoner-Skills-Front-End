@@ -3,10 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { update } from '../actions';
 
-  // name: string,
-	// prison_id: integer,
-	// canHaveWorkLeave: boolean // true or false
-
 class EditPrisoner extends React.Component {
 	constructor() {
 		super()

@@ -18,6 +18,9 @@ export const PRISONER_INNOCENT = 'PRISONER_INNOCENT';
 export const UPDATE_PRISONER = 'UPDATE_PRISONER';
 export const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
 export const UPDATE_FAIL = 'UPDATE_FAIL';
+export const ATTEMPT_BREAKOUT = "ATTEMPT_BREAKOUT";
+export const BREAKOUT_SUCCESS = "BREAKOUT_SUCCESS";
+export const BREAKOUT_FAIL = "BREAKOUT_FAIL";
 
 export function prisonLineup() {
   return (dispatch) => {
@@ -123,5 +126,26 @@ export function update(name, prison_id, canHaveWorkLeave, id) {
 		.catch((err) => {
       dispatch({type: UPDATE_FAIL, payload: err})
 		})
+  }
+}
+
+export function freetheprisoner(id) {
+  const config = localStorage.getItem('token')
+  return(dispatch) => {
+    dispatch({type: ATTEMPT_BREAKOUT})
+    axios.delete(`https://prison-skills.herokuapp.com/prisoners/${id}`,
+      {
+      prison_id: id
+    }, {
+    	headers: {
+    		authorization: config
+    	}
+    })
+    .then(resolve => {
+      dispatch({type: BREAKOUT_SUCCESS, payload: resolve.data})
+    })
+    .catch(err => {
+      dispatch({type: BREAKOUT_FAIL, payload: err})
+    })
   }
 }
