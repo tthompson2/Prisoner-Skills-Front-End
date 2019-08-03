@@ -31,9 +31,10 @@ class LoginPage extends React.Component {
 
 		return (
 			<form onSubmit={this.submitHandler}>
+				<h2>Log in</h2>
 
-				<input type="text" name="username" placeholder="Username" value={username} onChange={this.changeHandler} /><br />
-				<input type="password" name="password" placeholder="Password" value={password} onChange={this.changeHandler} /><br />
+				<input type="text" name="username" placeholder="Username" value={username} onChange={this.changeHandler} required autocomplete='current-username'/><br />
+				<input type="password" name="password" placeholder="Password" value={password} onChange={this.changeHandler} required autocomplete='current-password' /><br />
 
 				{this.props.loggingIn ?
 					<p>Logging in...</p> :
@@ -45,7 +46,7 @@ class LoginPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	loggingIn: state.loggingIn
+	loggingIn: state.loggingIn,
 })
 
 const mapDispatchToProps = {

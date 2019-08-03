@@ -33,6 +33,7 @@ class EditPrisoner extends React.Component {
 	submitHandler = (evt) => {
 		evt.preventDefault();
 		this.props.update(this.state.name, this.state.prison_id, this.state.canHaveWorkLeave, this.props.match.params.id);
+		this.props.history.push("/");
 	}
 
 	render() {
@@ -40,6 +41,7 @@ class EditPrisoner extends React.Component {
 
 		return (
 			<form onSubmit={this.submitHandler}>
+				<h2>Edit your prisoner's information</h2>
 
 				<input type="text" name="name" placeholder="Name" value={name} onChange={this.changeHandler} /><br />
 				<input type="text" name="prisonID" placeholder="Prison ID" value={prison_id} onChange={this.changeHandler} /><br />
