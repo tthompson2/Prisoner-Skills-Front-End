@@ -33,11 +33,12 @@ class RegisterPage extends React.Component {
 
 		return (
 			<form onSubmit={this.submitHandler}>
+				<h2>Sign up</h2>
 
-				<input type="text" name="username" placeholder="Username" value={username} onChange={this.changeHandler} /><br />
-				<input type="password" name="password" placeholder="Password" value={password} onChange={this.changeHandler} /><br />
-				<input type="text" name="name" placeholder="name" value={name} onChange={this.changeHandler} /><br />
-				<input type="text" name="address" placeholder="address" value={address} onChange={this.changeHandler} /><br />
+				<input type="text" name="username" placeholder="Username" value={username} onChange={this.changeHandler} required autocomplete='current-username' /><br />
+				<input type="password" name="password" placeholder="Password" value={password} onChange={this.changeHandler} required autocomplete='current-password' /><br />
+				<input type="text" name="name" placeholder="name" value={name} onChange={this.changeHandler} required /><br />
+				<input type="text" name="address" placeholder="address" value={address} onChange={this.changeHandler} required /><br />
 
 				{this.props.loggingIn ?
 					<p>Logging in...</p> :

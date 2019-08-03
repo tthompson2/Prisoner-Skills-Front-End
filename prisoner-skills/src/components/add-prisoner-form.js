@@ -30,9 +30,10 @@ class AddPrisoner extends React.Component {
 
 		return (
 			<form onSubmit={this.submitHandler}>
+				<h2>Attempt to convict</h2>
 
-				<input type="text" name="name" placeholder="Name" value={name} onChange={this.changeHandler} /><br />
-				<input type="text" name="prison_id" placeholder="Prison ID" value={prison_id} onChange={this.changeHandler} /><br />
+				<input type="text" name="name" placeholder="Name" value={name} onChange={this.changeHandler} required/><br />
+				<input type="text" name="prison_id" placeholder="Prison ID - Integer" value={prison_id} onChange={this.changeHandler} required/><br />
 
 				{this.props.addingPrisoner ?
 					<p>Listening to case...</p> :

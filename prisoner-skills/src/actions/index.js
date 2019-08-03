@@ -98,7 +98,7 @@ export function trial(name, prisonID) {
       }
     )
     .then(resolve => {
-      dispatch({type: PRISONER_GUILTY, payload: resolve.data})
+      dispatch({type: PRISONER_GUILTY})
     })
     .catch(err => {
       dispatch({type: PRISONER_INNOCENT, payload: err})

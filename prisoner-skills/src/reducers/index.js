@@ -44,7 +44,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingPrisoners: false,
-        error: true
+        error: action.payload
       }
     }
     case GET_PERSONAL_INFO: {
@@ -66,7 +66,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingPersonal: false,
-        error: true,
+        error: action.payload,
       }
     }
     case LOGIN_TRY: {
@@ -87,7 +87,7 @@ export default (state = initialState, action) => {
         ...state,
         loggingIn: false,
         registering: false,
-        error: true,
+        error: action.payload,
       }
     }
     case REGISTERING: {
@@ -109,11 +109,11 @@ export default (state = initialState, action) => {
       }
     }
     case PRISONER_GUILTY: {
-      const newPopulation = state.prisoners.push(action.payload)
+      state.prisoners.push(action.payload)
       return {
         ...state,
         addingPrisoner: false,
-        prisoners: newPopulation,
+        prisoners: state.prisoners,
         error: null,
       }
     }
@@ -121,7 +121,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         addingPrisoner: false,
-        error: true
+        error: action.payload
       }
     }
     case UPDATE_PRISONER: {
@@ -150,7 +150,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         updatingPrisoner: false,
-        error: true,
+        error: action.payload,
       }
     }
     case ATTEMPT_BREAKOUT: {
@@ -171,7 +171,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         deletingPrisoner: false,
-        error: true,
+        error: action.payload,
       }
     }
     default: {
