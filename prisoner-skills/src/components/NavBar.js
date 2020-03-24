@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { NavbarBrand, Nav, NavItem, NavLink, Collapse, NavbarToggler, Navbar, Button } from "reactstrap";
+import { NavbarBrand, Nav, NavItem, NavLink, Collapse, NavbarToggler, Navbar} from "reactstrap";
 import logo from '../Images/streemly_logo.png';
 import icon from '../Images/hamburger_icon.png';
-import { getToken } from '../Utls/api';
+import { getToken } from '../utils/getToken';
 
 const NavBar = () => {
 
@@ -27,11 +27,11 @@ const NavBar = () => {
                     <Nav navbar>
                         {!loggedIn &&
                             <NavItem className="streemly-red2">
-                                <NavLink href="/signup">Sign Up</NavLink>
+                                <NavLink href="/SignUp">Sign Up</NavLink>
                             </NavItem>}
                         {!loggedIn &&
                             <NavItem className="streemly-red2">
-                                <NavLink href="/login">Login</NavLink>
+                                <NavLink href="/LoginPage">Login</NavLink>
                             </NavItem>}
                         {loggedIn &&
                             <NavItem>

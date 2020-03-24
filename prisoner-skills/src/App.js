@@ -10,9 +10,8 @@ import EditPrisoner from './components/edit-prisoner'
 import { connect } from 'react-redux';
 import { prisonLineup } from './actions';
 import { logout } from './actions'
-
-
-// function App() {
+import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
 
 class App extends React.Component {
 
@@ -29,13 +28,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className='header'>
-          <NavLink to='/' className='headerlink'>Home</NavLink>
-          <NavLink to='/LoginPage' className='headerlink'>Log In</NavLink>
-          <NavLink to='/SignUp' className='headerlink'>Sign Up</NavLink>
-          <button type="button" onClick={this.clickHandler}>Log Out</button>
-          {this.props.loggedIn === false
-            ? <span>logged out</span>
-            : <span>logged in</span>}
+          <Route exact path="/" component={NavBar} />
         </div>
 
         <Route exact path="/" component={PrisonPopulation} />
@@ -44,7 +37,7 @@ class App extends React.Component {
         <Route exact path='/SignUp' component={RegisterPage} />
         <Route exact path='/NewPrisoner' component={AddPrisoner} />
         <Route exact path='/prisoner/:id/edit' component={EditPrisoner} />
-
+        <Route exact path="/" component={Footer} />
       </div>
     )
   }

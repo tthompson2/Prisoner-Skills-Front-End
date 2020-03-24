@@ -8,10 +8,11 @@ import tw from '../Images/twitter.png';
 import inst from '../Images/instagram.png';
 import pin from '../Images/pinterest.png';
 
-const Footer = (props) => {
+const Footer = () => {
 
     return(
-
+       <div>
+        <br/>
         <MDBFooter color="blue-grey" className="page-footer font-small lighten-5 pt-0">
             <div style={{ backgroundColor: "#A69300" }}>
               <MDBContainer>
@@ -56,6 +57,7 @@ const Footer = (props) => {
               </MDBRow>
             </MDBContainer>
           </MDBFooter>
+          </div>
         );
     
 };
