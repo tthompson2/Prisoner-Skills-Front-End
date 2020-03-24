@@ -10,19 +10,19 @@ import {
 } from '../actions'
 
 const initialState = {
-   prisoners: [],
-   fetchingPrisoners: false,
-   fetchingPersonal: false,
-   loggingIn: false,
-   loggedIn: localStorage.token === undefined
-              ? false
-              : true,
-   registering: false,
-   addingPrisoner: false,
-   updatingPrisoner: false,
-   deletingPrisoner: false,
-   error: null,
- }
+  prisoners: [],
+  fetchingPrisoners: false,
+  fetchingPersonal: false,
+  loggingIn: false,
+  loggedIn: localStorage.token === undefined
+    ? false
+    : true,
+  registering: false,
+  addingPrisoner: false,
+  updatingPrisoner: false,
+  deletingPrisoner: false,
+  error: null,
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -74,7 +74,7 @@ export default (state = initialState, action) => {
         ...state,
         loggingIn: true,
       }
-    }case LOGIN_SUCCESS: {
+    } case LOGIN_SUCCESS: {
       return {
         ...state,
         loggingIn: false,
@@ -82,7 +82,7 @@ export default (state = initialState, action) => {
         registering: false,
         error: null,
       }
-    }case LOGIN_FAIL: {
+    } case LOGIN_FAIL: {
       return {
         ...state,
         loggingIn: false,
@@ -133,7 +133,7 @@ export default (state = initialState, action) => {
     case UPDATE_SUCCESS: {
       // server returns 1 or 0 so I need to manually update state or do another get request
       const newguy = {
-        ...state.prisoners.find( p => String(p.id) === action.payload.id),
+        ...state.prisoners.find(p => String(p.id) === action.payload.id),
         name: action.payload.name,
         prison_id: action.payload.prison_id,
         canHaveWorkLeave: action.payload.canHaveWorkLeave,

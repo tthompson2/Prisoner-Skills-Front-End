@@ -7,7 +7,7 @@ const PrisonerCard = (props) => {
     <div className='prisoner-container'>
       {props.prisoners.map((person) => {
         return (
-          <Link to={`/prisoner/${person.id}`}key={person.id} className='prisoner-card'>
+          <Link to={`/prisoner/${person.id}`} key={person.id} className='prisoner-card'>
             <p>{person.name}</p>
             <p>{`Can work: ${person.canHaveWorkLeave}`}</p>
           </Link>

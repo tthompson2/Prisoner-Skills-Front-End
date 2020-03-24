@@ -8,19 +8,19 @@ class EditPrisoner extends React.Component {
 		super()
 		this.state = {
 			name: '',
-      prison_id: '',
-      canHaveWorkLeave: false,
+			prison_id: '',
+			canHaveWorkLeave: false,
 		}
 	}
 
-  componentDidMount() {
-    const pers = this.props.prisoners.find( p => String(p.id) === this.props.match.params.id)
-    this.setState({
-      name: pers.name,
-      prison_id: pers.prison_id,
-      canHaveWorkLeave: pers.canHaveWorkLeave,
-    })
-  }
+	componentDidMount() {
+		const pers = this.props.prisoners.find(p => String(p.id) === this.props.match.params.id)
+		this.setState({
+			name: pers.name,
+			prison_id: pers.prison_id,
+			canHaveWorkLeave: pers.canHaveWorkLeave,
+		})
+	}
 
 	changeHandler = (evt) => {
 		evt.preventDefault()
@@ -45,10 +45,10 @@ class EditPrisoner extends React.Component {
 
 				<input type="text" name="name" placeholder="Name" value={name} onChange={this.changeHandler} /><br />
 				<input type="text" name="prisonID" placeholder="Prison ID" value={prison_id} onChange={this.changeHandler} /><br />
-        <select name="canHaveWorkLeave" value={canHaveWorkLeave} onChange={this.changeHandler}>
-          <option value='true'>True</option>
-          <option defaultValue value='false'>False</option>
-        </select>
+				<select name="canHaveWorkLeave" value={canHaveWorkLeave} onChange={this.changeHandler}>
+					<option value='true'>True</option>
+					<option defaultValue value='false'>False</option>
+				</select>
 
 				{this.props.addingPrisoner ?
 					<p>Updating prisoner info...</p> :

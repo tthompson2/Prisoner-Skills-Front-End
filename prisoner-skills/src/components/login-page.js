@@ -33,7 +33,7 @@ class LoginPage extends React.Component {
 			<form onSubmit={this.submitHandler}>
 				<h2>Log in</h2>
 
-				<input type="text" name="username" placeholder="Username" value={username} onChange={this.changeHandler} required autocomplete='current-username'/><br />
+				<input type="text" name="username" placeholder="Username" value={username} onChange={this.changeHandler} required autocomplete='current-username' /><br />
 				<input type="password" name="password" placeholder="Password" value={password} onChange={this.changeHandler} required autocomplete='current-password' /><br />
 
 				{this.props.loggingIn ?

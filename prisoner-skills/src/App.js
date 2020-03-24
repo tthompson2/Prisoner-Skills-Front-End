@@ -33,9 +33,9 @@ class App extends React.Component {
           <NavLink to='/LoginPage' className='headerlink'>Log In</NavLink>
           <NavLink to='/SignUp' className='headerlink'>Sign Up</NavLink>
           <button type="button" onClick={this.clickHandler}>Log Out</button>
-          { this.props.loggedIn === false
-          ? <span>logged out</span>
-          : <span>logged in</span>}
+          {this.props.loggedIn === false
+            ? <span>logged out</span>
+            : <span>logged in</span>}
         </div>
 
         <Route exact path="/" component={PrisonPopulation} />
@@ -51,7 +51,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	loggedIn: state.loggedIn
+  loggedIn: state.loggedIn
 })
 
 const mapDispatchToProps = {
