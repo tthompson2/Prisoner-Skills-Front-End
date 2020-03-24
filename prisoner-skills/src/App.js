@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, NavLink } from "react-router-dom";
+import { Route } from "react-router-dom";
 import PrisonPopulation from './components/prison-population';
 import PrisonerPage from './components/prisoner-page';
 import LoginPage from './components/login-page';
@@ -10,9 +10,9 @@ import EditPrisoner from './components/edit-prisoner'
 import { connect } from 'react-redux';
 import { prisonLineup } from './actions';
 import { logout } from './actions'
-
-
-// function App() {
+import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
+import PrivateRoute from "./components/PrivateRoute";
 
 class App extends React.Component {
 
@@ -29,29 +29,23 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className='header'>
-          <NavLink to='/' className='headerlink'>Home</NavLink>
-          <NavLink to='/LoginPage' className='headerlink'>Log In</NavLink>
-          <NavLink to='/SignUp' className='headerlink'>Sign Up</NavLink>
-          <button type="button" onClick={this.clickHandler}>Log Out</button>
-          { this.props.loggedIn === false
-          ? <span>logged out</span>
-          : <span>logged in</span>}
+          <Route exact path="/" component={NavBar} />
         </div>
 
         <Route exact path="/" component={PrisonPopulation} />
-        <Route exact path="/prisoner/:id" component={PrisonerPage} />
+        <PrivateRoute exact path="/prisoner/:id" component={PrisonerPage} />
         <Route exact path='/LoginPage' component={LoginPage} />
         <Route exact path='/SignUp' component={RegisterPage} />
-        <Route exact path='/NewPrisoner' component={AddPrisoner} />
-        <Route exact path='/prisoner/:id/edit' component={EditPrisoner} />
-
+        <PrivateRoute exact path='/NewPrisoner' component={AddPrisoner} />
+        <PrivateRoute exact path='/prisoner/:id/edit' component={EditPrisoner} />
+        <Route exact path="/" component={Footer} />
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-	loggedIn: state.loggedIn
+  loggedIn: state.loggedIn
 })
 
 const mapDispatchToProps = {
