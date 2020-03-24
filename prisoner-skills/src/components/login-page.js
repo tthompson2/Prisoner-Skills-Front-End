@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../actions';
+import { NavBar } from "../components/NavBar";
 
 class LoginPage extends React.Component {
 	constructor() {
