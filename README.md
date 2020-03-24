@@ -5,7 +5,9 @@ mnprison
 pass
 
 API URL:
-https://prison-skills.herokuapp.com
+prisoner-skills-front-end-2ctoae1ce.now.sh
+
+// might need to redeploy the above using heroku. Need to investigate exactly the best way to do this
 
 API DOC:
 https://github.com/prisoner-skills-lambda-build-week/back-end
