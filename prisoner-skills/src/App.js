@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, NavLink } from "react-router-dom";
+import { Route } from "react-router-dom";
 import PrisonPopulation from './components/prison-population';
 import PrisonerPage from './components/prisoner-page';
 import LoginPage from './components/login-page';
@@ -12,6 +12,7 @@ import { prisonLineup } from './actions';
 import { logout } from './actions'
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
+import PrivateRoute from "./components/PrivateRoute";
 
 class App extends React.Component {
 
@@ -32,11 +33,11 @@ class App extends React.Component {
         </div>
 
         <Route exact path="/" component={PrisonPopulation} />
-        <Route exact path="/prisoner/:id" component={PrisonerPage} />
+        <PrivateRoute exact path="/prisoner/:id" component={PrisonerPage} />
         <Route exact path='/LoginPage' component={LoginPage} />
         <Route exact path='/SignUp' component={RegisterPage} />
-        <Route exact path='/NewPrisoner' component={AddPrisoner} />
-        <Route exact path='/prisoner/:id/edit' component={EditPrisoner} />
+        <PrivateRoute exact path='/NewPrisoner' component={AddPrisoner} />
+        <PrivateRoute exact path='/prisoner/:id/edit' component={EditPrisoner} />
         <Route exact path="/" component={Footer} />
       </div>
     )
