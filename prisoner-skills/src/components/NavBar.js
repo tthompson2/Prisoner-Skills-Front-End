@@ -47,7 +47,7 @@ const NavBar = () => {
                             </NavItem>} */}
                         {!loggedIn &&
                             <NavItem>
-                                <NavLink href="https://rule-engine-logictree.netlify.com/index.html">Marketing Page</NavLink>
+                                <NavLink href="https://prisoner-skill.now.sh/">Marketing Page</NavLink>
                             </NavItem>
                         }
                     </Nav>
